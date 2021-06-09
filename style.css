@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  box-sizing: border-box;
+  /* VARIABLES */
+  /* Colors */
+  --lime-green: hsl(163, 72%, 41%);
+  --bright-red: hsl(356, 69%, 56%);
+  --facebook: hsl(208, 92%, 53%);
+  --twitter: hsl(203, 89%, 53%);
+  --instagram: linear-gradient(90deg, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+  --youTube: hsl(348, 97%, 39%);
+  /* Light Theme */
+  --toggle-light: hsl(230, 22%, 74%);
+  --white: hsl(0, 0%, 100%);
+  --very-pale-blue: hsl(225, 100%, 98%);
+  --light-grayish-blue: hsl(227, 47%, 96%);
+  --light-grayish-blue-darker: hsl(227, 47%, 91%);
+  --dark-grayish-blue: hsl(228, 12%, 44%);
+  --very-dark-blue-1: hsl(230, 17%, 14%);
+  /* Dark Theme */
+  --toggle-dark: linear-gradient(90deg, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+  --very-dark-blue-2: hsl(232, 19%, 15%);
+  --dark-desaturated-blue: hsl(228, 28%, 20%);
+  --dark-desaturated-blue-lighter: hsl(228, 28%, 25%);
+  --desaturated-blue: hsl(228, 34%, 66%);
+  /* Font */
+  --family: "Inter", sans-serif;
+  --font-size1: 14px; /* Overview Card Headings */
+  --font-regular: 400;
+  --font-bold: 700;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* * * * * * * * * * * * * * * * * * */
+  --bg: var(--white);
+  --top-bg: var(--very-pale-blue);
+  --card-bg: var(--light-grayish-blue);
+  --card-bg-hvr: var(--light-grayish-blue-darker);
+  --text1: var(--dark-grayish-blue);
+  --text2: var(--very-dark-blue-1);
+/* * * * * * * * * * * * * * * * * * */
+  font-family: var(--family);
+  font-weight: var(--font-bold);
+  color: var(--text1);
+  background: var(--bg);
+  position: relative;
+  z-index: 0;
+  padding: 1.5em;
+}
+
+
+@media only screen and (min-width: 40em) {
+  body {
+    padding: 2em;
+  }
+}
+
+body.dark {
+  --bg: var(--very-dark-blue-1);
+  --top-bg: var(--very-dark-blue-2);
+  --card-bg: var(--dark-desaturated-blue);
+  --card-bg-hvr: var(--dark-desaturated-blue-lighter);
+  --text1: var(--desaturated-blue);
+  --text2: var(--white);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;right: 0;top: 0;
+  height: 15em;
+  background: var(--top-bg);
+  border-bottom-left-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
+  z-index: -1;
+}
+
+@media only screen and (min-width: 40em) {
+  body::before {
+    height: 17em;
+  }
+}
+
+.dashboard {
+  max-width: 69.375em;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 40em) {
+  .dashboard {
+    margin-bottom: 3em;
+  }
+}
+
+h1, b {
+  color: var(--text2);
+  font-weight: var(--font-bold);
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 40em) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.img {
+  display: flex;
+}
+
+.header {
+  margin-bottom: 3em;
+}
+
+@media only screen and (min-width: 40em) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  } 
+}
+
+.header > .first {
+  margin-bottom: 1em;
+}
+
+.header > .last {
+  border-top: 1px solid var(--text1);
+  padding-top: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (min-width: 40em) {
+  .header > .last {
+    padding-top: initial;
+    border-top: initial;
+  }
+
+  body.dark .header > .last:hover {
+    color: var(--white);
+  }
+}
+
+.toggle {
+  --width: 3em;
+  width: var(--width);
+  border-radius: 3em;
+  padding: .15em;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  background: var(--toggle-light);
+}
+
+.toggle:hover {
+  background: var(--toggle-dark);
+}
+
+@media only screen and (min-width: 40em) {
+  .toggle {
+    margin-left: 1em;
+  }
+}
+
+.toggle.on {
+  justify-content: flex-start;
+  background: var(--toggle-dark);
+}
+
+.toggle::before {
+  content: "";
+  --size: 1.2em;
+  display: block; /* IMPORTANT! */
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.toggle.on::before {
+  background: var(--card-bg);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1.5em;
+  column-gap: 2em;
+}
+
+.cards:nth-of-type(2) {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.cards > * {
+  flex: 1 0 15em;
+}
+
+.card1, .card2 {
+  max-width: 20em;
+  margin: 0 auto;
+}
+
+.card1:hover, .card2:hover {
+  background: var(--card-bg-hvr);
+}
+
+.card1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--card-bg);
+  border-radius: .5em;
+  padding: 1.5em;
+  position: relative;
+  overflow: hidden;
+}
+
+.card1::before {
+  content: "";
+  position: absolute;
+  top: 0;right: 0;left: 0;
+  display: block;
+  height: .3em;
+  background: var(--facebook);
+}
+
+.card1:nth-of-type(2)::before {
+  background: var(--twitter);
+}
+
+.card1:nth-of-type(3)::before {
+  background: var(--instagram);
+}
+
+.card1:nth-of-type(4)::before {
+  background: var(--youTube);
+}
+
+.media1 {
+  display: flex;
+  align-items: center;
+  margin: 1.5em 0;
+}
+
+@media only screen and (min-width: 40em) {
+  .media1 {
+    margin: 1em 0;
+  } 
+}
+
+.media1 > :nth-child(1) {
+  margin-right: .5em;
+}
+
+.followers {
+  margin-bottom: 1.5em;
+}
+
+.followers > b {
+  font-size: 3.5rem;
+}
+
+.followers > p {
+  text-transform: uppercase;
+  font-weight: var(--font-regular);
+  letter-spacing: .2em;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  color: var(--lime-green);
+}
+
+.status > :nth-child(1) {
+  margin-right: .2em;
+}
+
+.status.red {
+  display: flex;
+  align-items: center;
+  color: var(--bright-red);
+}
+
+h2 {
+  margin: 1em 0;
+}
+
+@media only screen and (min-width: 40em) {
+  body.dark h2 {
+    color: var(--white);
+  } 
+}
+
+.card2 {
+  padding: 1.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  row-gap: 1em;
+  border-radius: .5em;
+  background: var(--card-bg);
+}
+
+.card2 > :nth-child(2), .card2 > :nth-child(4) {
+  justify-self: end;
+}
+
+.card2 > h3 {
+  font-size: var(--font-size1);
+}
+
+.card2 > b {
+  font-size: 2rem;
+}
